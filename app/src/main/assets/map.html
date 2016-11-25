@@ -7,7 +7,8 @@
     </style>
 </head>
 <body>
-<input type="button" onclick="goto(36.043782, 32.721547)" value="goto">
+
+<div id='test'></div>
 <div id="map"></div>
 <script type="text/javascript">
 
@@ -18,7 +19,16 @@ function initMap() {
     zoom: 8
   });
 
-  
+
+    //顯示經緯度位置
+   map.addListener("click", function(event){
+        var clickLatLng = event.latLng;
+        var lat = clickLatLng.lat();
+        var lng = clickLatLng.lng();
+        //alert(lat + " x " + lng);
+        document.getElementById('test').innerHTML=lat+"x"+lng;
+        android.getLatLng(lat.toString(),lng.toString());
+  });
 }
 
 function goto(newlat,newlng){
