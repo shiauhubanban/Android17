@@ -7,6 +7,7 @@
     </style>
 </head>
 <body>
+<input type="button" onclick="goto(36.043782, 32.721547)" value="goto">
 <div id="map"></div>
 <script type="text/javascript">
 
@@ -16,6 +17,11 @@ function initMap() {
     center: {lat: -34.397, lng: 150.644},
     zoom: 8
   });
+}
+
+function goto(newlat,newlng){
+    map.setCenter({lat: newlat,lng: newlng});
+    map.setZoon(17);
 }
 
     </script>
