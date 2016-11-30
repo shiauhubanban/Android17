@@ -58,13 +58,16 @@ public class MainActivity extends AppCompatActivity {
     public void init() {
         initWebView();
 
+        //LocationManager 取得位置
         lmgr = (LocationManager) getSystemService(LOCATION_SERVICE);
 
+//        不一定要加
 //        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 //            return;
 //        }
 
         myGPSListerner = new MyGPSListerner();
+        //0越低越耗電
         lmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, myGPSListerner);
 
     }
@@ -72,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
     private class MyGPSListerner implements LocationListener {
         @Override
         public void onLocationChanged(Location location) {
+            //取得經緯度
             double lat = location.getLatitude();
             double lng = location.getLongitude();
             webView.loadUrl("javascript:goto(" +lat+", " + lng + ")");
